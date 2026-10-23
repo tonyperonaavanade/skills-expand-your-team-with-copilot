@@ -1,9 +1,12 @@
 /* Color palette */
 :root {
+  color-scheme: light;
+
   /* Primary colors */
   --primary: #1a237e;
   --primary-light: #534bae;
   --primary-dark: #000051;
+  --primary-text-color: var(--primary);
   --primary-text: #ffffff;
 
   /* Secondary colors */
@@ -30,6 +33,26 @@
   --error-light: #ffebee;
   --info: #0c5460;
   --info-light: #d1ecf1;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --primary: #3949ab;
+  --primary-light: #5c6bc0;
+  --primary-dark: #283593;
+  --primary-text-color: #9fa8da;
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #bdbdbd;
+  --border: #424242;
+  --border-light: #333333;
+  --border-focus: #616161;
+  --success-light: #1b3a20;
+  --warning-light: #4a3512;
+  --error-light: #3d1c1c;
+  --info-light: #17343a;
 }
 
 * {
@@ -91,7 +114,7 @@ section h3 {
   margin-bottom: 15px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
-  color: var(--primary);
+  color: var(--primary-text-color);
   font-size: 1.1rem;
 }
 
@@ -113,7 +136,7 @@ section h3 {
   margin-bottom: 15px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
-  color: var(--primary);
+  color: var(--primary-text-color);
   font-size: 1.1rem;
 }
 
@@ -171,7 +194,7 @@ section h3 {
 
 .activity-card h4 {
   margin-bottom: 8px;
-  color: var(--primary);
+  color: var(--primary-text-color);
   font-size: 1rem;
   letter-spacing: 0.3px;
   padding-bottom: 6px;
@@ -246,7 +269,7 @@ section h3 {
 }
 
 .participants-list h5 {
-  color: var(--primary);
+  color: var(--primary-text-color);
   margin-bottom: 5px;
   font-size: 0.8em;
 }
@@ -445,7 +468,7 @@ button {
 
 /* Login modal specific styling */
 #login-modal .modal-content h3 {
-  color: var(--primary);
+  color: var(--primary-text-color);
   font-size: 1.2rem;
   margin-bottom: 15px;
   text-align: center;
@@ -595,6 +618,10 @@ footer {
 
 /* Responsive adjustments for mobile */
 @media (max-width: 767px) {
+  header {
+    padding-top: 48px;
+  }
+
   .sidebar-filters {
     margin-bottom: 15px;
   }
@@ -617,6 +644,9 @@ footer {
   position: absolute;
   top: 10px;
   right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #user-status {
