@@ -18,11 +18,11 @@ def hash_password(password):
     return ph.hash(password)
 
 def init_database():
-    """Initialize database if empty"""
+    """Initialize the database with any missing seed data"""
 
-    # Initialize activities if empty
-    if activities_collection.count_documents({}) == 0:
-        for name, details in initial_activities.items():
+    # Add any activities missing from the database
+    for name, details in initial_activities.items():
+        if activities_collection.find_one({"_id": name}) is None:
             activities_collection.insert_one({"_id": name, **details})
             
     # Initialize teacher accounts if empty
@@ -163,6 +163,16 @@ initial_activities = {
         },
         "max_participants": 16,
         "participants": ["william@mergington.edu", "jacob@mergington.edu"]
+    },
+    "Manga Maniacs": {
+        "description": "Dive into the pages of Japanese manga, meet unforgettable heroes, and explore epic adventures and surprising twists together.",
+        "schedule": "Tuesdays, 7:00 PM",
+        "schedule_details": {
+            "days": ["Tuesday"],
+            "start_time": "19:00"
+        },
+        "max_participants": 15,
+        "participants": []
     }
 }
 
@@ -186,4 +196,3 @@ initial_teachers = [
         "role": "admin"
     }
 ]
-
